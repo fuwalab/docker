@@ -16,7 +16,11 @@ services:
     container_name: mongo
     image: mongo:3.7
     volumes:
-      - ./data:/var/www/html
+      - ./mongo/conf:/data/configdb
+      - mongo-data:/var/lib/mongodb
+    command:
+      - '-f'
+      - '/data/configdb/mongod.conf'
     restart: always
 
   nginx:
@@ -55,4 +59,6 @@ services:
 
 volumes:
   db-data:
+    driver: local
+  mongo-data:
     driver: local
