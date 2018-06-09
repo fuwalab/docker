@@ -1,4 +1,4 @@
-version: '3'
+version: '3.3'
 services:
   go:
     container_name: go
@@ -14,13 +14,12 @@ services:
 
   mongo:
     container_name: mongo
-    image: mongo:3.7
+    build: ./mongo
+    #image: mongo:3.6
     volumes:
       - ./mongo/conf:/data/configdb
-      - mongo-data:/var/lib/mongodb
-    command:
-      - '-f'
-      - '/data/configdb/mongod.conf'
+      - mongo-data:/data/db
+    command: "--auth"
     restart: always
 
   nginx:
