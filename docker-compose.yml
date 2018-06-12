@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.5'
 services:
   go:
     container_name: go
@@ -7,7 +7,10 @@ services:
       - "5000:5000"
     volumes:
       - ./data/go:/go/src
+      - ./go/bin/startup.sh:/go/startup.sh
     tty: true
+    command: ["./startup.sh"]
+    entrypoint: ["ash"]
     depends_on:
       - mongo
     restart: always
