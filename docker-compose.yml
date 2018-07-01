@@ -3,11 +3,12 @@ services:
   go:
     container_name: go
     image: golang:1.10-alpine
-    ports:
-      - "5000:5000"
     volumes:
       - ./data/go:/go/src
+      - ./go/bin/startup.sh:/go/startup.sh
     tty: true
+    command: ./startup.sh
+    entrypoint: ash
     depends_on:
       - mongo
     restart: always
@@ -32,6 +33,7 @@ services:
       - ./data:/var/www/html
     depends_on:
       - php
+      - go
     restart: always
 
   mysql:
@@ -48,8 +50,6 @@ services:
   php:
     container_name: php
     build: ./php
-    ports:
-      - "8000:8000"
     volumes:
       - ./data:/var/www/html
     depends_on:
