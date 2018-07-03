@@ -20,3 +20,13 @@ See `./nginx/conf` files.
     http://go.dev-env.fuwalab/
     ```
     
+## Volumes of MySQL and MongoDB
+- MySQL
+    ```
+    /var/lib/docker/volumes/docker_db-data/_data
+    ```
+
+- MongoDB
+    ```
+    /var/lib/docker/volumes/docker_mongo-data/_data
+    ```
