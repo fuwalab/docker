@@ -15,10 +15,8 @@ services:
 
   mongo:
     container_name: mongo
-    build: ./mongo
-    #image: mongo:3.6
+    image: mongo:3.6
     volumes:
-      - ./mongo/conf:/data/configdb
       - mongo-data:/data/db
     command: "--auth"
     restart: always
