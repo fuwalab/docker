@@ -50,7 +50,7 @@ services:
     build: ./php
     volumes:
       - ./data:/var/www/html
-    depends_on:
+    links:
       - mysql
     restart: always
 
